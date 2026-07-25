@@ -1,4 +1,2 @@
 default
-mobs
-wool
-farming?
+playereffects

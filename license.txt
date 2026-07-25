@@ -3,7 +3,7 @@
 License for Code
 ----------------
 
-Copyright (C) 2016 D00Med <heiselong@gmx.com>
+Copyright (C) 2016 DOOMED <heiselong@gmx.com>
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
@@ -19,34 +19,12 @@ You should have received a copy of the GNU Lesser General Public License along
 with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-License for Textures, Models
+License for Textures, Models and Sounds
 ---------------------------------------
 
-CC BY-SA 3.0 UNPORTED. Created by D00Med
+CC-BY-SA 3.0 UNPORTED. Created by D00Med
 
-Roar.ogg - CC BY 3.0 Mike Koenig - http://soundbible.com/1165-Dinosaur-Roar.html
-Velociraptor.ogg - CC BY 3.0 snottyboi - http://soundbible.com/1373-Velociraptor-Call.html
-whale_1.ogg - CC0 Public Domain - https://en.wikipedia.org/wiki/File:Humpbackwhale2.ogg
-mobs_pig.ogg - from mobs_animal by TenPlus1 (MIT)
-dmobs_chirrup.ogg - CC BY SA 3.0 taikedz
-wasp.ogg - Public Domain
+hyruletools_bomb.b3d, hyruletools_medallion*.png, hyruletools_bombflower.png, hyruletools_bomb.png, hyruletools_bombflower_plant.png, hyruletools_boomer_*.png -  CC-BY-SA 3.0 UNPORTED. Created by toby109tt(aka tobyplowy) and D00Med
 
---License of lib_mount:
--- Minetest mod: lib_mount
--- =======================
--- by blert2112
+hyruletools_ocarina_*.png, hyruletools_gameboy.png, hyruletools_letter_inv_*.png, hyruletools_medallion*.png, hyruletools_bluerupee_ore.png, hyruletools_redrupee_ore.png, hyruletools_greenrupee_ore.png -  CC-BY-SA 3.0 UNPORTED. Created by toby109tt(aka tobyplowy)
 
--- Based on the Boats mod by PilzAdam.
-
-
--- -----------------------------------------------------------
--- -----------------------------------------------------------
-
-
--- Minetest Game mod: boats
--- ========================
--- by PilzAdam
-
--- License of source code:
--- -----------------------
--- WTFPL
