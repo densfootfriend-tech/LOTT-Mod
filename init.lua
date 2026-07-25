@@ -1,589 +1,542 @@
+dofile(minetest.get_modpath(minetest.get_current_modname()).."/multiskin.lua")
+dofile(minetest.get_modpath(minetest.get_current_modname()).."/armor.lua")
+dofile(minetest.get_modpath(minetest.get_current_modname()).."/shield.lua")
+dofile(minetest.get_modpath(minetest.get_current_modname()).."/wieldview.lua")
 
-local players = {}
+
+
+
+
+-- Special Armor
+-- Using Gondor/Rohan/Dwarf textures because they were already there!
+
+
+
+minetest.register_tool("lottarmor:leggings_dwarf", {
+	description = minetest.colorize("Gray", "Dwarven Leggings") ..
+		minetest.get_background_escape_sequence("lightgoldenrodyellow"),
+	inventory_image = "lottarmor_inv_leggings_dwarf.png",
+	groups = {armor_legs=20, armor_heal=0, armor_healing=0, physics_speed=0, immortal=1},
+	wear = 0,
+})
+
+
+minetest.register_tool("lottarmor:boots_dwarf", {
+	description = minetest.colorize("Gray", "Dwarven Boots") ..
+		minetest.get_background_escape_sequence("lightgoldenrodyellow"),
+	inventory_image = "lottarmor_inv_boots_dwarf.png",
+	groups = {armor_feet=15, armor_heal=0, armor_healing=0, physics_speed=0, immortal=1},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:helmet_dwarf", {
+	description = minetest.colorize("Gray", "Dwarven Helm") ..
+		minetest.get_background_escape_sequence("lightgoldenrodyellow"),
+	inventory_image = "lottarmor_inv_helmet_dwarf.png",
+	groups = {armor_head=15, armor_heal=0, armor_healing=0, physics_speed=0, immortal=1},
+	wear = 0,
+})
+
+
+minetest.register_tool("lottarmor:boots_ranger", {
+	description = minetest.colorize("Brown", "Worn Ranger Boots") ..
+		minetest.get_background_escape_sequence("lightgoldenrodyellow"),
+	inventory_image = "lottarmor_inv_boots_ranger.png",
+	groups = {armor_feet=10, armor_heal=0, armor_healing=0, physics_speed=0, immortal=1},
+	wear = 0,
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- Wood Armor
+minetest.register_tool("lottarmor:helmet_wood", {
+	description = "Training Helmet",
+	inventory_image = "lottarmor_inv_helmet_wood.png",
+	groups = {armor_head=2.5, armor_heal=0, armor_use=2000, armor_healing=0, physics_speed=0.04},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:chestplate_wood", {
+	description = "Training Chestplate",
+	inventory_image = "lottarmor_inv_chestplate_wood.png",
+	groups = {armor_torso=5, armor_heal=0, armor_use=2000, armor_healing=0, physics_speed=0.04},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:leggings_wood", {
+	description = "Training Leggings",
+	inventory_image = "lottarmor_inv_leggings_wood.png",
+	groups = {armor_legs=2.5, armor_heal=0, armor_use=2000, armor_healing=0, physics_speed=0.04},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:boots_wood", {
+	description = "Training Boots",
+	inventory_image = "lottarmor_inv_boots_wood.png",
+	groups = {armor_feet=2.5, armor_heal=0, armor_use=2100, armor_healing=0, physics_speed=0.04},
+	wear = 0,
+})
+
+-- Tin Armor
+minetest.register_tool("lottarmor:helmet_tin", {
+	description = "Tin Helmet",
+	inventory_image = "lottarmor_inv_helmet_tin.png",
+	groups = {armor_head=5, armor_heal=0, armor_use=1500, armor_healing=0},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:chestplate_tin", {
+	description = "Tin Chestplate",
+	inventory_image = "lottarmor_inv_chestplate_tin.png",
+	groups = {armor_torso=10, armor_heal=0, armor_use=1500, armor_healing=0},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:leggings_tin", {
+	description = "Tin Leggings",
+	inventory_image = "lottarmor_inv_leggings_tin.png",
+	groups = {armor_legs=5, armor_heal=0, armor_use=1500, armor_healing=0},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:boots_tin", {
+	description = "Tin Boots",
+	inventory_image = "lottarmor_inv_boots_tin.png",
+	groups = {armor_feet=5, armor_heal=0, armor_use=2000, armor_healing=0},
+	wear = 0,
+})
+
+--Copper Armor
+minetest.register_tool("lottarmor:helmet_copper", {
+	description = "Copper Helmet",
+	inventory_image = "lottarmor_inv_helmet_copper.png",
+	groups = {armor_head=5, armor_heal=0, armor_use=1500, armor_healing=0},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:chestplate_copper", {
+	description = "Copper Chestplate",
+	inventory_image = "lottarmor_inv_chestplate_copper.png",
+	groups = {armor_torso=10, armor_heal=0, armor_use=1500, armor_healing=0},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:leggings_copper", {
+	description = "Copper Leggings",
+	inventory_image = "lottarmor_inv_leggings_copper.png",
+	groups = {armor_legs=5, armor_heal=0, armor_use=1500, armor_healing=0},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:boots_copper", {
+	description = "Copper Boots",
+	inventory_image = "lottarmor_inv_boots_copper.png",
+	groups = {armor_feet=5, armor_heal=0, armor_use=2000, armor_healing=0},
+	wear = 0,
+})
+
+--Steel Armor
+minetest.register_tool("lottarmor:helmet_steel", {
+	description = "Steel Helmet",
+	inventory_image = "lottarmor_inv_helmet_steel.png",
+	groups = {armor_head=10, armor_heal=0, armor_use=500, armor_healing=0},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:chestplate_steel", {
+	description = "Steel Chestplate",
+	inventory_image = "lottarmor_inv_chestplate_steel.png",
+	groups = {armor_torso=15, armor_heal=0, armor_use=500, armor_healing=0},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:leggings_steel", {
+	description = "Steel Leggings",
+	inventory_image = "lottarmor_inv_leggings_steel.png",
+	groups = {armor_legs=15, armor_heal=0, armor_use=500, armor_healing=0},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:boots_steel", {
+	description = "Steel Boots",
+	inventory_image = "lottarmor_inv_boots_steel.png",
+	groups = {armor_feet=10, armor_heal=0, armor_use=500, armor_healing=0},
+	wear = 0,
+})
+
+--Bronze Armor
+minetest.register_tool("lottarmor:helmet_bronze", {
+	description = "Bronze Helmet",
+	inventory_image = "lottarmor_inv_helmet_bronze.png",
+	groups = {armor_head=10, armor_heal=6, armor_use=250, armor_healing=0},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:chestplate_bronze", {
+	description = "Bronze Chestplate",
+	inventory_image = "lottarmor_inv_chestplate_bronze.png",
+	groups = {armor_torso=15, armor_heal=6, armor_use=250, armor_healing=0},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:leggings_bronze", {
+	description = "Bronze Leggings",
+	inventory_image = "lottarmor_inv_leggings_bronze.png",
+	groups = {armor_legs=15, armor_heal=6, armor_use=250, armor_healing=0},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:boots_bronze", {
+	description = "Bronze Boots",
+	inventory_image = "lottarmor_inv_boots_bronze.png",
+	groups = {armor_feet=10, armor_heal=6, armor_use=250, armor_healing=0},
+	wear = 0,
+})
+
+
+--Silver Armor
+minetest.register_tool("lottarmor:helmet_silver", {
+	description = "Silver Helmet",
+	inventory_image = "lottarmor_inv_helmet_silver.png",
+	groups = {armor_head=12, armor_heal=3, armor_use=300, armor_healing=0, physics_speed=-0.05},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:chestplate_silver", {
+	description = "Silver Chestplate",
+	inventory_image = "lottarmor_inv_chestplate_silver.png",
+	groups = {armor_torso=17, armor_heal=3, armor_use=300, armor_healing=0, physics_speed=-0.05},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:leggings_silver", {
+	description = "Silver Leggings",
+	inventory_image = "lottarmor_inv_leggings_silver.png",
+	groups = {armor_legs=17, armor_heal=3, armor_use=300, armor_healing=0, physics_speed=-0.05},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:boots_silver", {
+	description = "Silver Boots",
+	inventory_image = "lottarmor_inv_boots_silver.png",
+	groups = {armor_feet=12, armor_heal=3, armor_use=300, armor_healing=0, physics_speed=-0.05},
+	wear = 0,
+})
+
+--Gold Armor
+minetest.register_tool("lottarmor:helmet_gold", {
+	description = "Gold Helmet",
+	inventory_image = "lottarmor_inv_helmet_gold.png",
+	groups = {armor_head=10, armor_heal=6, armor_use=250, armor_healing=0, physics_speed=-0.05},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:chestplate_gold", {
+	description = "Gold Chestplate",
+	inventory_image = "lottarmor_inv_chestplate_gold.png",
+	groups = {armor_torso=15, armor_heal=6, armor_use=250, armor_healing=0, physics_speed=-0.05},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:leggings_gold", {
+	description = "Gold Leggings",
+	inventory_image = "lottarmor_inv_leggings_gold.png",
+	groups = {armor_legs=15, armor_heal=6, armor_use=250, armor_healing=0, physics_speed=-0.05},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:boots_gold", {
+	description = "Gold Boots",
+	inventory_image = "lottarmor_inv_boots_gold.png",
+	groups = {armor_feet=10, armor_heal=6, armor_use=250, armor_healing=0, physics_speed=-0.05},
+	wear = 0,
+})
+
+--Galvorn Armor
+minetest.register_tool("lottarmor:helmet_galvorn", {
+	description = "Galvorn Helmet",
+	inventory_image = "lottarmor_inv_helmet_galvorn.png",
+	groups = {armor_head=15, armor_heal=12, armor_use=100, armor_healing=0, physics_speed=0.01, forbidden=1},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:chestplate_galvorn", {
+	description = "Galvorn Chestplate",
+	inventory_image = "lottarmor_inv_chestplate_galvorn.png",
+	groups = {armor_torso=20, armor_heal=12, armor_use=100, armor_healing=0, physics_speed=0.01, forbidden=1},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:leggings_galvorn", {
+	description = "Galvorn Leggings",
+	inventory_image = "lottarmor_inv_leggings_galvorn.png",
+	groups = {armor_legs=20, armor_heal=12, armor_use=100, armor_healing=0, physics_speed=0.01, forbidden=1},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:boots_galvorn", {
+	description = "Galvorn Boots",
+	inventory_image = "lottarmor_inv_boots_galvorn.png",
+	groups = {armor_feet=15, armor_heal=12, armor_use=100, armor_healing=0, physics_speed=0.01, forbidden=1},
+	wear = 0,
+})
+
+--Mithril Armor
+minetest.register_tool("lottarmor:helmet_mithril", {
+	description = "Mithril Helmet",
+	inventory_image = "lottarmor_inv_helmet_mithril.png",
+	groups = {armor_head=15, armor_heal=12, armor_use=50, armor_healing=0, physics_speed=0.02},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:chestplate_mithril", {
+	description = "Mithril Chestplate",
+	inventory_image = "lottarmor_inv_chestplate_mithril.png",
+	groups = {armor_torso=20, armor_heal=12, armor_use=50, armor_healing=0, physics_speed=-0.02},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:leggings_mithril", {
+	description = "Mithril Leggings",
+	inventory_image = "lottarmor_inv_leggings_mithril.png",
+	groups = {armor_legs=20, armor_heal=12, armor_use=50, armor_healing=0, physics_speed=-0.02},
+	wear = 0,
+})
+
+minetest.register_tool("lottarmor:boots_mithril", {
+	description = "Mithril Boots",
+	inventory_image = "lottarmor_inv_boots_mithril.png",
+	groups = {armor_feet=15, armor_heal=12, armor_use=50, armor_healing=0, physics_speed=-0.02},
+	wear = 0,
+})
+
+-- Register Craft Recipes
+
+local craft_ingreds = {
+	wood = "group:wood",
+	tin = "lottores:tin_ingot",
+	copper = "default:copper_ingot",
+	steel = "default:steel_ingot",
+	bronze = "default:bronze_ingot",
+	silver = "lottores:silver_ingot",
+	gold = "default:gold_ingot",
+	galvorn = "lottores:galvorn_ingot",
+	mithril = "lottores:mithril_ingot",
+}
+
+for k, v in pairs(craft_ingreds) do
+	minetest.register_craft({
+		output = "lottarmor:helmet_"..k,
+		recipe = {
+			{v, v, v},
+			{v, "", v},
+			{"", "", ""},
+		},
+	})
+	minetest.register_craft({
+		output = "lottarmor:chestplate_"..k,
+		recipe = {
+			{v, "", v},
+			{v, v, v},
+			{v, v, v},
+		},
+	})
+	minetest.register_craft({
+		output = "lottarmor:leggings_"..k,
+		recipe = {
+			{v, v, v},
+			{v, "", v},
+			{v, "", v},
+		},
+	})
+	minetest.register_craft({
+		output = "lottarmor:boots_"..k,
+		recipe = {
+			{v, "", v},
+			{v, "", v},
+		},
+	})
+end
+
+
+
+
+
+
+
+
+-- Add a HUD bar for armor
+
+local S
+if (minetest.get_modpath("intllib")) then
+	S = intllib.Getter()
+else
+	S = function ( s ) return s end
+end
+
+if (not armor) or (not armor.def) then
+	minetest.log("error", "[hbarmor] Outdated 3d_armor version. Please update your version of 3d_armor!")
+end
+
+local hbarmor = {}
+
+-- HUD statbar values
+hbarmor.armor = {}
+
+-- Stores if player's HUD bar has been initialized so far.
+hbarmor.player_active = {}
+
+-- Time difference in seconds between updates to the HUD armor bar.
+-- Increase this number for slow servers.
+hbarmor.tick = 0.4
+
+-- If true, the armor bar is hidden when the player does not wear any armor
+hbarmor.autohide = false
+
+--load custom settings
+local set = minetest.settings:get_bool("hbarmor_autohide")
+if set ~= nil then
+	hbarmor.autohide = set
+end
+
+set = minetest.settings:get("hbarmor_tick")
+if tonumber(set) ~= nil then
+	hbarmor.tick = tonumber(set)
+end
+
+
+local must_hide = function(playername, arm)
+	return ((not armor.def[playername].count or armor.def[playername].count == 0) and arm == 0)
+end
+
+local arm_printable = function(arm)
+	return math.ceil(math.floor(arm+0.5))
+end
+
+local function custom_hud(player)
+	local name = player:get_player_name()
+
+	if minetest.settings:get_bool("enable_damage") then
+		local ret = hbarmor.get_armor(player)
+		if ret == false then
+			minetest.log("error", "[hbarmor] Call to hbarmor.get_armor in custom_hud returned with false!")
+		end
+		local arm = tonumber(hbarmor.armor[name])
+		if not arm then arm = 0 end
+		local hide
+		if hbarmor.autohide then
+			hide = must_hide(name, arm)
+		else
+			hide = false
+		end
+		
+		
+		hb.init_hudbar(player, "armor", arm_printable(arm), 100)
+		
+	end
+end
+
+--register and define armor HUD bar
+--hb.register_hudbar("armor", 0xFFFFFF, S("Armor"), { icon = "lottarmor_inv_shield_silver.png", bar = "armor_bar.png" }, 0, 100, hbarmor.autohide, S("%s: %d/100"))
+
+
+
+
+
+hb.register_hudbar("armor", 0xFFFFFF, S("Armor"), { bar = "armor_bar.png", icon = "lottarmor_inv_shield_silver.png" }, 0, 100, false)
+
+
+function hbarmor.get_armor(player)
+	if not player or not armor.def then
+		return false
+	end
+	local name = player:get_player_name()
+	local def = armor.def[name] or nil
+	
+	if def and def.level then
+		hbarmor.set_armor(name, def.level)
+	else
+		return false
+	end
+	return true
+end
+
+
+
+function hbarmor.set_armor(player_name, level)
+
+	-- I tweaked this code to show the actual armor LEVEL, not durability
+	-- 100 armor level is only obtained by wearing Nenya and Narya together
+	
+	hbarmor.armor[player_name] = level
+	
+end
+
+-- update hud elemtens if value has changed
+local function update_hud(player)
+	local name = player:get_player_name()
+	--armor
+	local arm = tonumber(hbarmor.armor[name])
+	if not arm then
+		arm = 0
+		hbarmor.armor[name] = 0
+	end
+	if hbarmor.autohide then
+		-- hide armor bar completely when there is none
+		if must_hide(name, arm) then
+			hb.hide_hudbar(player, "armor")
+		else
+			hb.change_hudbar(player, "armor", arm_printable(arm))
+			hb.unhide_hudbar(player, "armor")
+		end
+	else
+		hb.change_hudbar(player, "armor", arm_printable(arm))
+	end
+end
 
 minetest.register_on_joinplayer(function(player)
 	local name = player:get_player_name()
-	players[name] = true
+	custom_hud(player)
+	hbarmor.player_active[name] = true
 end)
 
 minetest.register_on_leaveplayer(function(player)
 	local name = player:get_player_name()
-	players[name] = nil
+	hbarmor.player_active[name] = false
 end)
 
-
-
-
-minetest.register_node("hyruletools:beaconb", {
-	description = "Beacon (red)",
-	drawtype = "glasslike",
-	tiles = {"hyruletools_beacon_boxb.png"},
-	use_texture_alpha = "blend",
-	paramtype = "light",
-	light_source = 5,
-	groups = {cracky=1, oddly_breakable_by_hand=1},
-	on_construct = function(pos, node, clicker, itemstack)
-		if minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name == "air" then
-			minetest.set_node({x=pos.x, y=pos.y+1, z=pos.z}, {name="hyruletools:beacon_lightb"})
-		end
-	end,
-	on_destruct = function(pos, oldnode)
-		if minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name == "hyruletools:beacon_lightb" then
-			minetest.remove_node({x=pos.x, y=pos.y+1, z=pos.z})
-		end
-	end,
-	sounds = default.node_sound_glass_defaults()
-})
-
-minetest.register_node("hyruletools:beacon_lightb", {
-	description = "Beacon Light",
-	tiles = {"hyruletools_beaconb.png"},
-	use_texture_alpha = "blend",
-	drawtype = "nodebox",
-	paramtype = "light",
-	pointable = false,
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.3125, -0.5, -0.3125, 0.3125, 0.5, 0.3125}, -- NodeBox1
-		}
-	},
-	light_source = 12,
-	groups = {cracky=1, oddly_breakable_by_hand=1, not_in_creative_inventory=1},
-	walkable = false,
-	drop = "",
-	on_construct = function(pos, node)
-	if pos.y >= 41000 then return end
-		if minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name == "air" then
-			minetest.set_node({x=pos.x, y=pos.y+1, z=pos.z}, {name="hyruletools:beacon_lightb"})
-		end
-	end,
-	on_destruct = function(pos, oldnode)
-		if minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name == "hyruletools:beacon_lightb" then
-			minetest.remove_node({x=pos.x, y=pos.y+1, z=pos.z})
-		end
-	end,
-	sounds = default.node_sound_glass_defaults()
-})
-
-minetest.register_abm({
-	nodenames = {"hyruletools:beaconb"},
-	interval = 5,
-	chance = 1,
-	action = function(pos, node)
-		minetest.add_particle({
-			pos = {x=pos.x, y=pos.y+0.1, z=pos.z},
-			velocity = {x=0, y=0, z=0},
-			acceleration = {x=0, y=0, z=0},
-			expirationtime = 5,
-			size = 30,
-			collisiondetection = false,
-			collisionremoval = false,
-			vertical = false,
-			texture = "hyruletools_beacon_centerb.png",
-			animation = {type = "vertical_frames", aspect_w = 64, aspect_h = 64, length = 0.30},
-			glow = 9
-		})
-	end
-})
-
-minetest.register_node("hyruletools:beacon", {
-	description = "Beacon (blue)",
-	drawtype = "glasslike",
-	tiles = {"hyruletools_beacon_box.png"},
-	use_texture_alpha = "blend",
-	paramtype = "light",
-	light_source = 5,
-	groups = {cracky=1, oddly_breakable_by_hand=1},
-	on_construct = function(pos, node, clicker, itemstack)
-		if minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name == "air" then
-			minetest.set_node({x=pos.x, y=pos.y+1, z=pos.z}, {name="hyruletools:beacon_light"})
-		end
-	end,
-	on_destruct = function(pos, oldnode)
-		if minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name == "hyruletools:beacon_light" then
-			minetest.remove_node({x=pos.x, y=pos.y+1, z=pos.z})
-		end
-	end,
-	sounds = default.node_sound_glass_defaults()
-})
-
-minetest.register_node("hyruletools:beacon_light", {
-	description = "Beacon Light",
-	tiles = {"hyruletools_beacon.png"},
-	use_texture_alpha = "blend",
-	drawtype = "nodebox",
-	paramtype = "light",
-	pointable = false,
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.3125, -0.5, -0.3125, 0.3125, 0.5, 0.3125}, -- NodeBox1
-		}
-	},
-	light_source = 12,
-	groups = {cracky=1, oddly_breakable_by_hand=1, not_in_creative_inventory=1},
-	walkable = false,
-	drop = "",
-	on_construct = function(pos, node)
-	if pos.y >= 41000 then return end
-		if minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name == "air" then
-			minetest.set_node({x=pos.x, y=pos.y+1, z=pos.z}, {name="hyruletools:beacon_light"})
-		end
-	end,
-	on_destruct = function(pos, oldnode)
-		if minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name == "hyruletools:beacon_light" then
-			minetest.remove_node({x=pos.x, y=pos.y+1, z=pos.z})
-		end
-	end,
-	sounds = default.node_sound_glass_defaults()
-})
-
-minetest.register_abm({
-	nodenames = {"hyruletools:beacon"},
-	interval = 5,
-	chance = 1,
-	action = function(pos, node)
-		minetest.add_particle({
-			pos = {x=pos.x, y=pos.y+0.1, z=pos.z},
-			velocity = {x=0, y=0, z=0},
-			acceleration = {x=0, y=0, z=0},
-			expirationtime = 5,
-			size = 30,
-			collisiondetection = false,
-			collisionremoval = false,
-			vertical = false,
-			texture = "hyruletools_beacon_center.png",
-			animation = {type = "vertical_frames", aspect_w = 64, aspect_h = 64, length = 0.30},
-			glow = 2
-		})
-	end
-})
-
-minetest.register_craft({
-	output = 'hyruletools:beacon',
-	recipe = {
-		{'default:glass'},
-		{'dye:blue'},
-	}
-})
-
-minetest.register_craft({
-	output = 'hyruletools:beaconb',
-	recipe = {
-		{'default:glass'},
-		{'dye:red'},
-	}
-})
-
-
-minetest.register_node("hyruletools:shield", {
-	description = "Wall Shield",
-	drawtype = "signlike",
-	tiles = {"hyruletools_swdshld.png"},
-	inventory_image = "hyruletools_swdshld.png",
-	wield_image = "hyruletools_swdshld.png",
-	paramtype = "light",
-	paramtype2 = "wallmounted",
-	sunlight_propagates = true,
-	is_ground_content = false,
-	walkable = false,
-	selection_box = {
-		type = "wallmounted",
-	},
-	groups = {choppy=2,dig_immediate=2,attached_node=1}})
-
-minetest.register_craft( {
-	output = "hyruletools:shield 1",
-	recipe = {
-		{ "default:steel_ingot", "", "default:steel_ingot" },
-		{ "default:steel_ingot", "", "default:steel_ingot" },
-		{ "", "lottweapons:copper_spear", "" }
-	}
-})
-
-
-
-minetest.register_craftitem("hyruletools:ocarina", {
-	description = "Ocarina",
-	inventory_image = "hyruletools_ocarina.png",
-	on_use = function(pos, placer)
-		local sound_pos = placer:get_pos()
-		minetest.sound_play("ocarina1", {object = placer, gain = 0.5, max_hear_distance = 15})
-		local dir = placer:get_look_dir();
-			local playerpos = placer:getpos();
-			minetest.add_particlespawner(
-			5, --amount
-			0.1, --time
-			{x=playerpos.x-1, y=playerpos.y+1, z=playerpos.z-1}, --minpos
-			{x=playerpos.x+1, y=playerpos.y+1, z=playerpos.z+1}, --maxpos
-			{x=-0, y=-0, z=-0}, --minvel
-			{x=0, y=0, z=0}, --maxvel
-			{x=-0.5,y=4,z=-0.5}, --minacc
-			{x=0.5,y=4,z=0.5}, --maxacc
-			0.5, --minexptime
-			1, --maxexptime
-			1, --minsize
-			2, --maxsize
-			false, --collisiondetection
-			"hyruletools_note.png" --texture
-		)
-	end
-})
-
-minetest.register_craft({
-	output = "hyruletools:ocarina",
-	recipe = {
-		{"", "", ""},
-		{"", "default:coalblock", ""},
-		{"default:clay", "default:clay",  "default:clay"}
-	}
-})
-
-minetest.register_craftitem("hyruletools:ocarina2", {
-	description = "Bunny Ocarina",
-	inventory_image = "hyruletools_ocarina_red.png",
-	on_use = function(pos, placer, itemstack)
-		
-		local player = placer:get_player_name()
-		
-		if mana.subtract(player, 20) then
-			local sound_pos = placer:get_pos()
-			minetest.sound_play("ocarina2", {object = placer, gain = 0.5, max_hear_distance = 15})
-			local dir = placer:get_look_dir();
-				local playerpos = placer:getpos();
-				minetest.add_particlespawner(
-				5, --amount
-				0.1, --time
-				{x=playerpos.x-1, y=playerpos.y+1, z=playerpos.z-1}, --minpos
-				{x=playerpos.x+1, y=playerpos.y+1, z=playerpos.z+1}, --maxpos
-				{x=-0, y=-0, z=-0}, --minvel
-				{x=0, y=0, z=0}, --maxvel
-				{x=-0.5,y=4,z=-0.5}, --minacc
-				{x=0.5,y=4,z=0.5}, --maxacc
-				0.5, --minexptime
-				1, --maxexptime
-				1, --minsize
-				2, --maxsize
-				false, --collisiondetection
-				"hyruletools_note.png" --texture
-			)
-			
-			local playerpos = placer:getpos();
-			if math.random(10) == 1 then
-				local dir = placer:get_look_dir();
-				local obj = minetest.env:add_entity({x=playerpos.x+1+dir.x,y=playerpos.y+1+dir.y,z=playerpos.z+1+dir.z}, "lottmobs:bunny")
-			end
-			
-			--[[
-			local playerpos = placer:getpos();
-			local dir = placer:get_look_dir();
-			local player = placer:get_player_name()
-			if minetest.setting_getbool("enable_weather") then	
-			hyrule_weather.weather = "storm"
-			hyrule_weather.current = 3
-			else
-			minetest.chat_send_player(player, "weather not enabled!")
-			end
-			]]
-		end
-	end
-})
-
-minetest.register_craft({
-	output = "hyruletools:ocarina2",
-	recipe = {
-		{"", "", ""},
-		{"", "dye:red", ""},
-		{"", "hyruletools:ocarina",  ""}
-	}
-})
-
-minetest.register_craftitem("hyruletools:ocarina3", {
-	description = "Pig Ocarina",
-	inventory_image = "hyruletools_ocarina_yellow.png",
-	on_use = function(pos, placer, itemstack)
-		
-		local player = placer:get_player_name()
-		
-		if mana.subtract(player, 20) then
-			minetest.sound_play("ocarina3", {object = placer, gain = 0.5, max_hear_distance = 15})
-			local dir = placer:get_look_dir();
-				local playerpos = placer:getpos();
-				minetest.add_particlespawner(
-				5, --amount
-				0.1, --time
-				{x=playerpos.x-1, y=playerpos.y+1, z=playerpos.z-1}, --minpos
-				{x=playerpos.x+1, y=playerpos.y+1, z=playerpos.z+1}, --maxpos
-				{x=-0, y=-0, z=-0}, --minvel
-				{x=0, y=0, z=0}, --maxvel
-				{x=-0.5,y=4,z=-0.5}, --minacc
-				{x=0.5,y=4,z=0.5}, --maxacc
-				0.5, --minexptime
-				1, --maxexptime
-				1, --minsize
-				2, --maxsize
-				false, --collisiondetection
-				"hyruletools_note.png" --texture
-			)
-			local playerpos = placer:getpos();
-			if math.random(10) == 1 then
-				local dir = placer:get_look_dir();
-				local obj = minetest.env:add_entity({x=playerpos.x+1+dir.x,y=playerpos.y+1+dir.y,z=playerpos.z+1+dir.z}, "lottmobs:pumba")
-			end
-		end
-	end
-})
-
-minetest.register_craft({
-	output = "hyruletools:ocarina3",
-	recipe = {
-		{"", "", ""},
-		{"", "dye:yellow", ""},
-		{"", "hyruletools:ocarina",  ""}
-	}
-})
-
-minetest.register_craftitem("hyruletools:ocarina4", {
-	description = "Sheep Ocarina",
-	inventory_image = "hyruletools_ocarina_green.png",
-	on_use = function(pos, placer, itemstack)
-		
-		local player = placer:get_player_name()
-		
-		if mana.subtract(player, 20) then
-			minetest.sound_play("ocarina4", {object = placer, gain = 0.5, max_hear_distance = 15})
-			local dir = placer:get_look_dir();
-				local playerpos = placer:getpos();
-				minetest.add_particlespawner(
-				5, --amount
-				0.1, --time
-				{x=playerpos.x-1, y=playerpos.y+1, z=playerpos.z-1}, --minpos
-				{x=playerpos.x+1, y=playerpos.y+1, z=playerpos.z+1}, --maxpos
-				{x=-0, y=-0, z=-0}, --minvel
-				{x=0, y=0, z=0}, --maxvel
-				{x=-0.5,y=4,z=-0.5}, --minacc
-				{x=0.5,y=4,z=0.5}, --maxacc
-				0.5, --minexptime
-				1, --maxexptime
-				1, --minsize
-				2, --maxsize
-				false, --collisiondetection
-				"hyruletools_note.png" --texture
-			)
-			local playerpos = placer:getpos();
-			
-			if math.random(10) == 1 then
-				local dir = placer:get_look_dir();
-				local obj = minetest.env:add_entity({x=playerpos.x+1+dir.x,y=playerpos.y+2+dir.y,z=playerpos.z+1+dir.z}, "lottmobs:sheep")
-			end
-		end
-	end
-})
-
-minetest.register_craft({
-	output = "hyruletools:ocarina4",
-	recipe = {
-		{"", "", ""},
-		{"", "dye:green", ""},
-		{"", "hyruletools:ocarina",  ""}
-	}
-})
-
-
-
-
-minetest.register_craftitem("hyruletools:ocarina5", {
-	description = minetest.colorize("black", "Black Ocarina") ..
-		minetest.get_background_escape_sequence("lightgoldenrodyellow"),
-	inventory_image = "hyruletools_ocarina_black.png",
-	groups = {forbidden = 1},
-	
-	on_use = function(pos, placer, itemstack)
-		
-		local player = placer:get_player_name()
-		
-		if mana.subtract(player, 20) then
-			local sound_pos = placer:get_pos()
-			minetest.sound_play("flute", {object = placer, gain = 0.25, max_hear_distance = 15})
-			local dir = placer:get_look_dir();
-				local playerpos = placer:getpos();
-				minetest.add_particlespawner(
-				5, --amount
-				0.1, --time
-				{x=playerpos.x-1, y=playerpos.y+1, z=playerpos.z-1}, --minpos
-				{x=playerpos.x+1, y=playerpos.y+1, z=playerpos.z+1}, --maxpos
-				{x=-0, y=-0, z=-0}, --minvel
-				{x=0, y=0, z=0}, --maxvel
-				{x=-0.5,y=4,z=-0.5}, --minacc
-				{x=0.5,y=4,z=0.5}, --maxacc
-				0.5, --minexptime
-				1, --maxexptime
-				1, --minsize
-				2, --maxsize
-				false, --collisiondetection
-				"hyruletools_note.png" --texture
-			)
-			local playerpos = placer:getpos();
-			
-			if math.random(10) == 1 then
-				
-				local mob = math.random(21)
-				local ent = ""
-				
-				if mob == 1 then
-					ent = "lottmobs:rat"
-				elseif mob == 2 then
-					ent = "lottmobs:chicken"
-				elseif mob == 3 then
-					ent = "lottmobs:badger"
-				elseif mob == 4 then
-					ent = "lottmobs:kitten"
-				elseif mob == 5 then
-					ent = "lottmobs:treeman"
-				elseif mob == 6 then
-					ent = "lottmobs:troll"
-				elseif mob == 7 then
-					ent = "lottmobs:uruk_hai"
-				elseif mob == 8 then
-					ent = "lottmobs:ithilien_ranger"
-				elseif mob == 9 then
-					ent = "dmobs:fox"
-				elseif mob == 10 then
-					ent = "dmobs:skeleton"
-				elseif mob == 11 then
-					ent = "dmobs:elephant"
-				elseif mob == 12 then
-					ent = "dmobs:panda"
-				elseif mob == 13 then
-					ent = "dmobs:hedgehog"
-				elseif mob == 14 then
-					ent = "dmobs:owl"
-				elseif mob == 15 then
-					ent = "dmobs:tortoise"
-				elseif mob == 16 then
-					ent = "dmobs:wyvern"
-				elseif mob == 17 then
-					ent = "lottmobs:battle_troll"
-				elseif mob == 18 then
-					ent = "dmobs:gnorm"
-				elseif mob == 19 then
-					ent = "dmobs:pig_evil"
-				elseif mob == 20 then
-					ent = "dmobs:wasp"
-				elseif mob == 21 then
-					ent = "dmobs:golem"
-				end
-				
-				local dir = placer:get_look_dir();
-				local obj = minetest.env:add_entity({x=playerpos.x+1+dir.x,y=playerpos.y+1+dir.y,z=playerpos.z+1+dir.z}, ent)
-			end
-		end
-	end
-})
-
-minetest.register_craft({
-	output = "hyruletools:ocarina5",
-	recipe = {
-		{"hyruletools:ocarina4", "hyruletools:ocarina3", "hyruletools:ocarina2"},
-		{"", "lottblocks:master_whistle", ""},
-		{"lottmapgen:mordor_stone 50", "lottores:marble 50",  "lottblocks:orc_brick 50"}
-	}
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-minetest.register_node("hyruletools:fire", {
-	description = "Magical Fire",
-	drawtype = "plantlike",
-	sunlight_propagates = true,
-	paramtype = "light",
-	light_source = 14,
-	walkable = false,
-	damage_per_second = 2,
-	tiles = {{
-		name = "hyruletools_fire.png",
-		animation = {type = "vertical_frames", aspect_w = 32, aspect_h = 32, length = 1.00},
-	}}
-,
-	inventory_image = "hyruletools_fire_inv.png",
-	wield_image = "hyruletools_fire_inv.png",
-	groups = {crumbly=1, dig_immediate = 3},
-	selection_box = {
-			type = "fixed",
-			fixed = {-0.3, -0.5, -0.3, 0.3, 0, 0.3}
-		}
-})
-
-
-minetest.register_node("hyruletools:light", {
-	drawtype = "airlike",
-	groups = {not_in_creative_inventory=1},
-	walkable = false,
-	pointable = false,
-	light_source = 10,
-})
-
-
-
-
-minetest.register_entity("hyruletools:fireball", {
-	textures = {"hyruletools_flame.png"},
-	velocity = 15,
-	damage = 2,
-	collisionbox = {0, 0, 0, 0, 0, 0},
-	on_step = function(self, obj, pos)		
-		local remove = minetest.after(2, function() 
-		self.object:remove()
-		end)
-		local pos = self.object:getpos()
-		local objs = minetest.get_objects_inside_radius({x=pos.x,y=pos.y,z=pos.z}, 2)	
-			for k, obj in pairs(objs) do
-				if obj:get_luaentity() ~= nil then
-					if obj:get_luaentity().name ~= "hyruletools:fireball" and obj:get_luaentity().name ~= "__builtin:item" then
-						obj:punch(self.object, 1.0, {
-							full_punch_interval=1.0,
-							damage_groups={fleshy=2},
-						}, nil)
-					self.object:remove()
+local main_timer = 0
+local timer = 0
+minetest.register_globalstep(function(dtime)
+	main_timer = main_timer + dtime
+	timer = timer + dtime
+	if main_timer > hbarmor.tick or timer > 4 then
+		if minetest.settings:get_bool("enable_damage") then
+			if main_timer > hbarmor.tick then main_timer = 0 end
+			for _,player in ipairs(minetest.get_connected_players()) do
+				local name = player:get_player_name()
+				if hbarmor.player_active[name] == true then
+					local ret = hbarmor.get_armor(player)
+					if ret == false then
+						minetest.log("error", "[hbarmor] Call to hbarmor.get_armor in globalstep returned with false!")
 					end
+					-- update all hud elements
+					update_hud(player)
 				end
 			end
-			for dx=0,0.5 do
-						for dy=0,0.5 do
-							for dz=0,0.5 do
-								local p = {x=pos.x+dx, y=pos.y, z=pos.z+dz}
-								local t = {x=pos.x+dx, y=pos.y+dy, z=pos.z+dz}
-								local n = minetest.env:get_node(p).name
-								if n ~= "hyruletools:fireball" and n ~="default:dirt_with_grass" and n ~="default:dirt_with_dry_grass" and n ~="default:stone"  then	
-									if minetest.registered_nodes[n].groups.flammable then
-										minetest.env:set_node(t, {name="fire:basic_flame"})
-									self.object:remove()
-									return
-									end
-								end
-							end
-						end
-					end
-	end,
-})
-
+		end
+	end
+	if timer > 4 then timer = 0 end
+end)

@@ -1,30 +1,37 @@
+Authors of source code:
+-----------------------
+(LOTT-specific-mod)
+Original Author(s):
+	Copyright (C) 2013 Stuart Jones (LGPL v2.1)
+		https://github.com/stujones11/minetest-3d_armor
+	Copyright (C) 2013-2014 Brett O'Donnell (BSD-3-Clause)
+		https://github.com/cornernote/minetest-bags
+LOTT Modifications By:
+	fishyWET (LGPL v2.1)
+	Amaz (LGPL v2.1)
+	Flipsels (LGPL v2.1)
 
 
-License for Code
-----------------
+Authors of media files
+-----------------------
+Copyright (C) 2013 Stuart Jones (LGPL v2.1)
+	lottarmor_character.b3d
+	lottarmor_character.blend
+Special credit to Jordach and MirceaKitsune for providing the default 3d character model.
 
-Copyright (C) 2016 DOOMED <heiselong@gmx.com>
+(C) Cisoun (WTFPL)
+	Default item textures
 
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU Lesser General Public License as published by
-the Free Software Foundation; either version 2.1 of the License, or
-(at your option) any later version.
+Copyright (C) 2013 Ryan Jones (CC BY-SA 3.0)
+	Original armor textures / armor textures base template
+	
+Flipsels (CC BY-SA 3.0)
+	gui_formbg.png
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Lesser General Public License for more details.
+Copyright (C) 2013-2014 Brett O'Donnell (BSD-3-Clause)
+	bags.png
 
-You should have received a copy of the GNU Lesser General Public License along
-with this program; if not, write to the Free Software Foundation, Inc.,
-51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-
-License for Textures, Models and Sounds
----------------------------------------
-
-CC-BY-SA 3.0 UNPORTED. Created by D00Med
-
-hyruletools_bomb.b3d, hyruletools_medallion*.png, hyruletools_bombflower.png, hyruletools_bomb.png, hyruletools_bombflower_plant.png, hyruletools_boomer_*.png -  CC-BY-SA 3.0 UNPORTED. Created by toby109tt(aka tobyplowy) and D00Med
-
-hyruletools_ocarina_*.png, hyruletools_gameboy.png, hyruletools_letter_inv_*.png, hyruletools_medallion*.png, hyruletools_bluerupee_ore.png, hyruletools_redrupee_ore.png, hyruletools_greenrupee_ore.png -  CC-BY-SA 3.0 UNPORTED. Created by toby109tt(aka tobyplowy)
-
+RealBadAngel: (WTFPL)
+	lottarmor_trash.png
+	
+Otherwise: (CC BY-SA 3.0)
