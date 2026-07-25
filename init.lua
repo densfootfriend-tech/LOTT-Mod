@@ -1,29 +1,112 @@
--- Minetest 0.4 mod: default
--- See README.txt for licensing and other information.
+dmobs = {}
 
--- The API documentation in here was moved into doc/lua_api.txt
+-- dmobs by D00Med
 
-WATER_ALPHA = 160
-WATER_VISC = 1
-LAVA_VISC = 7
-LIGHT_MAX = 14
-SAVEDIR = "LOTT"
+-- mounts api by D00Med and lib_mount api by blert2112
 
--- Definitions made by this mod that other mods can use too
-default = {}
-default.gui_bg     = ""
-default.gui_bg_img = "background[5,5;1,1;gui_formbg.png;true]"
-default.gui_slots  = "listcolors[#606060AA;#606060;#141318;#30434C;#FFF]"
+dofile(minetest.get_modpath("dmobs").."/api.lua")
 
--- Load files
-dofile(minetest.get_modpath("default").."/chatcommands.lua")
-dofile(minetest.get_modpath("default").."/crafting.lua")
-dofile(minetest.get_modpath("default").."/craftitems.lua")
-dofile(minetest.get_modpath("default").."/functions.lua")
-dofile(minetest.get_modpath("default").."/legacy.lua")
-dofile(minetest.get_modpath("default").."/mapgen.lua")
-dofile(minetest.get_modpath("default").."/nodes.lua")
-dofile(minetest.get_modpath("default").."/player.lua")
-dofile(minetest.get_modpath("default").."/tools.lua")
-dofile(minetest.get_modpath("default").."/torches.lua")
-dofile(minetest.get_modpath("default").."/trees.lua")
+-- Keep dmobs.dragons enabled so Great Dragon and other variants load
+dmobs.dragons = minetest.settings:get_bool("dmobs.dragons")
+if dmobs.dragons == nil then
+	dmobs.dragons = true
+end
+
+dmobs.regulars = minetest.settings:get_bool("dmobs.regulars")
+if dmobs.regulars == nil then
+	dmobs.regulars = true
+end
+
+-- Enable fireballs/explosions
+dmobs.destructive = minetest.settings:get_bool("dmobs.destructive") or false
+
+-- Timer for the egg mechanics
+dmobs.eggtimer = tonumber(minetest.settings:get("dmobs.eggtimer")) or 100
+
+-- Table cloning to reduce code repetition
+dmobs.deepclone = function(t) -- deep-copy a table -- from https://gist.github.com/MihailJP/3931841
+	if type(t) ~= "table" then return t end
+
+	local target = {}
+
+	for k, v in pairs(t) do
+		if k ~= "__index" and type(v) == "table" then -- omit circular reference
+			target[k] = dmobs.deepclone(v)
+		else
+			target[k] = v
+		end
+	end
+	return target
+end
+
+-- Start loading ----------------------------------------------------------------------------------
+
+local function loadmob(mobname,dir)
+	dir = dir or "/mobs/"
+	dofile(minetest.get_modpath("dmobs")..dir..mobname..".lua")
+end
+
+-- regular mobs
+
+local mobslist = {
+	-- friendlies
+	"panda",
+	"tortoise",
+	"golem_friendly",
+	"gnorm",
+	"hedgehog",
+	"owl",
+	"whale",
+	"elephant",
+
+	-- baddies
+	"pig_evil",
+	"fox",
+	"wasps",
+	"golem",
+	"skeleton",
+	"orc",
+}
+
+if dmobs.regulars then
+	for _,mobname in pairs(mobslist) do
+		loadmob(mobname)
+	end
+end
+
+-- dragons!!
+
+if dmobs.dragons then
+	-- Force custom normal dragon to load alongside Great Dragon
+	loadmob("dragon_normal","/dragons/")
+	loadmob("main","/dragons/")
+	loadmob("dragon1","/dragons/")
+	loadmob("dragon2","/dragons/")
+	loadmob("dragon3","/dragons/")
+	loadmob("dragon4","/dragons/")
+	loadmob("great_dragon","/dragons/")
+	loadmob("wyvern","/dragons/")
+
+	dofile(minetest.get_modpath("dmobs").."/dragons/eggs.lua")
+else
+	loadmob("dragon_normal","/dragons/")
+end
+
+dofile(minetest.get_modpath("dmobs").."/arrows/dragonfire.lua")
+dofile(minetest.get_modpath("dmobs").."/arrows/dragonarrows.lua")
+
+-- General arrow definitions
+
+if dmobs.destructive == true then
+	dofile(minetest.get_modpath("dmobs").."/arrows/fire_explosive.lua")
+else
+	dofile(minetest.get_modpath("dmobs").."/arrows/fire.lua")
+end
+
+dofile(minetest.get_modpath("dmobs").."/nodes.lua")
+dofile(minetest.get_modpath("dmobs").."/arrows/sting.lua")
+
+-- Spawning
+
+dofile(minetest.get_modpath("dmobs").."/spawn.lua")
+dofile(minetest.get_modpath("dmobs").."/saddle.lua")
